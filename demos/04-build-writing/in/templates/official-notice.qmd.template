@@ -1,0 +1,33 @@
+---
+title: "{{ title }}"
+document_type: "{{ document_type }}"
+output_targets:
+{{ output_targets_yaml }}
+date: "{{ date }}"
+---
+
+<style>
+.official-doc {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 26px 30px 24px;
+  border: 1px solid #cfcfcf;
+  background: #fff;
+  color: #111;
+  font-family: "Noto Sans CJK KR", "NanumGothic", serif;
+  font-size: 15px;
+  line-height: 1.72;
+}
+.approval-table { width: 224px; margin-left: auto; border-collapse: collapse; table-layout: fixed; font-size: 12px; line-height: 1.35; }
+.doc-table { width: 100%; border-collapse: collapse; table-layout: fixed; margin: 12px 0 14px; }
+.approval-table th, .approval-table td, .doc-table th, .doc-table td { border: 1px solid #777; padding: 7px 9px; vertical-align: middle; word-break: keep-all; }
+.approval-table th, .doc-table th { background: #f3f3f3; text-align: center; font-weight: 700; }
+.org-name { margin: 22px 0 8px; text-align: center; font-size: 25px; font-weight: 800; letter-spacing: 0; }
+.sender-title { margin: 54px 0 42px; text-align: center; font-size: 20px; font-weight: 800; }
+.doc-line { border: 0; border-top: 1px solid #555; margin: 10px 0 18px; }
+.verify-line { margin-top: 12px; color: #555; font-size: 12px; }
+</style>
+
+```{=html}
+{{ html_blocks }}
+```

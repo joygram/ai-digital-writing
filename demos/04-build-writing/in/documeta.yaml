@@ -1,0 +1,165 @@
+document_type: official_notice
+document_subtype: system_maintenance_notice
+language: ko-KR
+contract_version: 2026-05-28
+
+output_targets:
+  - qmd
+  - typ
+  - hwpx
+
+slots:
+  organization: 대한디지털진흥원
+  approval_line:
+    columns:
+      - 담당
+      - 팀장
+      - 본부장
+      - 대표
+  recipient: 전체 직원
+  via: 각 부서장
+  title: null
+  purpose_sentence: null
+  schedule: null
+  scope: null
+  required_actions: null
+  contact: null
+  attachment: 내부 업무시스템 정기점검 작업계획
+  sender_title: 대한디지털진흥원장
+  doc_number: 정보화지원팀-1245
+  date: 2026년 5월 25일
+  receipt_number: 공란
+  officer: 김민준
+  phone: 02-1234-5678
+  postal_code: "04524"
+  address: 서울특별시 중구 세종대로 110
+  email: helpdesk@example.go.kr
+  disclosure: 공개
+
+table_contracts:
+  approval_table:
+    columns:
+      - 담당
+      - 팀장
+      - 본부장
+      - 대표
+    row_slot_matrix:
+      - [officer, "", "", ""]
+  notice_table:
+    columns:
+      - 구분
+      - 내용
+    rows:
+      - [가. 점검 일시, schedule]
+      - [나. 영향 범위, scope]
+      - [다. 조치 사항, required_actions]
+      - [라. 문의처, contact]
+  footer_metadata_table:
+    rows:
+      - [시행, doc_number, 접수, receipt_number]
+      - [담당, officer, 전화, phone]
+      - [우, postal_code, 주소, address]
+      - [전자우편, email, 공개구분, disclosure]
+
+source_contract:
+  required_slots:
+    - schedule
+    - scope
+    - required_actions
+    - contact
+  metadata_fields:
+    - doc_id
+    - chunk_id
+    - source_path
+
+hwpx_template:
+  table_preset: academic
+  output_file: archive/system-notice-documeta-generated.hwpx
+  blocks:
+    - type: table
+      contract: approval_table
+      width: 17000
+      col_widths: [4250, 4250, 4250, 4250]
+      row_heights: [1100, 1500]
+      cell_margin: [120, 120, 80, 80]
+      header_bg: "#F3F3F3"
+      use_preset: false
+      repeat_header: false
+    - type: heading
+      slot: organization
+      level: 1
+      alignment: CENTER
+    - type: line
+      x1: 0
+      y1: 0
+      x2: 42520
+      y2: 0
+      line_color: "#111111"
+      line_width: 180
+    - type: table
+      rows:
+        - [수신, recipient]
+        - [(경유), via]
+        - [제목, title]
+      width: 42520
+      col_widths: [6000, 36520]
+      row_heights: [1100, 1100, 1200]
+      cell_margin: [180, 180, 120, 120]
+      use_preset: false
+      repeat_header: false
+    - type: paragraph
+      text: "1. 귀 기관의 무궁한 발전을 기원합니다."
+    - type: paragraph
+      template: "2. {{ purpose_sentence }}"
+    - type: paragraph
+      text: "3. 내부 업무시스템 정기점검을 아래와 같이 실시하오니, 관련 부서에서는 업무에 참고하시고 사전 조치사항을 확인하여 주시기 바랍니다."
+    - type: table
+      contract: notice_table
+      width: 42520
+      col_widths: [11000, 31520]
+      row_heights: [1000, 1200, 1200, 1500, 1200]
+      cell_margin: [220, 220, 140, 140]
+      header_bg: "#F3F3F3"
+      use_preset: false
+      repeat_header: false
+    - type: paragraph
+      template: "붙임  {{ attachment }}  1부.  끝."
+    - type: paragraph
+      text: " "
+    - type: heading
+      slot: sender_title
+      level: 2
+      alignment: CENTER
+    - type: line
+      x1: 0
+      y1: 0
+      x2: 42520
+      y2: 0
+      line_color: "#555555"
+      line_width: 90
+    - type: table
+      contract: footer_metadata_table
+      width: 42520
+      col_widths: [5200, 16060, 5200, 16060]
+      row_heights: [1250, 1250, 1250, 1250]
+      cell_margin: [160, 160, 90, 90]
+      use_preset: false
+      repeat_header: false
+generation_guardrails:
+  source_policy: 근거 문서에 있는 내용만 사용
+  required_checks:
+    - title, purpose_sentence, schedule, scope, required_actions, contact 슬롯 채우기
+    - 근거 없는 영향 범위 확대 금지
+    - 표 계약과 출력 계약은 유지
+  output_status_if_passed: 출력 가능
+  output_status_if_failed: 보류
+
+adapter_contracts:
+  qmd:
+    role: 원고와 HTML 검토본 생성
+  typ:
+    role: 공문서형 PDF 레이아웃 검토
+  hwpx:
+    role: HWPX 생성 어댑터로 실제 검토 파일 생성
+    preview_role: HWPX 뷰어로 결과 확인
+    stop_if_output_status: 보류

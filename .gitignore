@@ -1,0 +1,31 @@
+.env
+!.env.example
+.venv/
+demo_rag_workflow/.env
+archive/experimental/demo_rag_workflow/.env
+demo_rag_workflow/.chroma/
+demo_rag_workflow/output/
+demo-output/
+demos/03-documeta-completion/out/00-template-*.md
+demos/03-documeta-completion/out/01-reference-ingest-prompt.md
+demos/03-documeta-completion/out/reference-docs/
+demos/04-build-writing/out/
+__pycache__/
+*.pyc
+.venv/
+
+# Local agent runtime artifacts
+.deuk-agent/
+
+# Rendered lecture artifacts
+ai-writing-slides_files/
+*-slides_files/
+ai-writing-presentation-markdown.html
+ai-writing-presentation-markdown.pdf
+ai-writing-slides.html
+ai-writing-slides.pdf
+ai-writing-presentation.pdf
+ai-writing-slides.tex
+*-slides.html
+*-slides.pdf
+*-slides.tex

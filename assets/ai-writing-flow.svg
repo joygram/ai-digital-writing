@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">AI writing workflow</title>
+  <desc id="desc">A presentation workflow diagram from document purpose to evidence, AI draft, human review, and final document.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#1f2937" flood-opacity="0.18"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="720" rx="0" fill="#f8fafc"/>
+  <rect x="74" y="62" width="1132" height="596" rx="28" fill="#ffffff" stroke="#dbe4ee" stroke-width="2"/>
+
+  <text x="640" y="128" text-anchor="middle" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="42" font-weight="700" fill="#111827">
+    AI Writing Flow
+  </text>
+  <text x="640" y="170" text-anchor="middle" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="24" fill="#4b5563">
+    목적과 근거를 먼저 정리하고, AI 초안을 사람이 책임 있게 완성합니다.
+  </text>
+
+  <g font-family="Pretendard, Noto Sans KR, Arial, sans-serif">
+    <g filter="url(#shadow)">
+      <rect x="104" y="282" width="178" height="142" rx="20" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2"/>
+      <text x="193" y="332" text-anchor="middle" font-size="26" font-weight="700" fill="#1d4ed8">문서 목적</text>
+      <text x="193" y="370" text-anchor="middle" font-size="19" fill="#374151">무엇을</text>
+      <text x="193" y="398" text-anchor="middle" font-size="19" fill="#374151">결정하게 할까</text>
+    </g>
+
+    <line x1="302" y1="353" x2="370" y2="353" stroke="#2563eb" stroke-width="5" marker-end="url(#arrow)"/>
+
+    <g filter="url(#shadow)">
+      <rect x="390" y="282" width="178" height="142" rx="20" fill="#ecfdf5" stroke="#bbf7d0" stroke-width="2"/>
+      <text x="479" y="332" text-anchor="middle" font-size="26" font-weight="700" fill="#047857">근거 확인</text>
+      <text x="479" y="370" text-anchor="middle" font-size="19" fill="#374151">자료와 선례를</text>
+      <text x="479" y="398" text-anchor="middle" font-size="19" fill="#374151">먼저 찾기</text>
+    </g>
+
+    <line x1="588" y1="353" x2="656" y2="353" stroke="#2563eb" stroke-width="5" marker-end="url(#arrow)"/>
+
+    <g filter="url(#shadow)">
+      <rect x="676" y="282" width="178" height="142" rx="20" fill="#fff7ed" stroke="#fed7aa" stroke-width="2"/>
+      <text x="765" y="332" text-anchor="middle" font-size="26" font-weight="700" fill="#c2410c">AI 초안</text>
+      <text x="765" y="370" text-anchor="middle" font-size="19" fill="#374151">반복 문구와</text>
+      <text x="765" y="398" text-anchor="middle" font-size="19" fill="#374151">구조 만들기</text>
+    </g>
+
+    <line x1="874" y1="353" x2="942" y2="353" stroke="#2563eb" stroke-width="5" marker-end="url(#arrow)"/>
+
+    <g filter="url(#shadow)">
+      <rect x="962" y="282" width="178" height="142" rx="20" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="2"/>
+      <text x="1051" y="332" text-anchor="middle" font-size="26" font-weight="700" fill="#6d28d9">사람 검토</text>
+      <text x="1051" y="370" text-anchor="middle" font-size="19" fill="#374151">누락과 표현을</text>
+      <text x="1051" y="398" text-anchor="middle" font-size="19" fill="#374151">책임 있게 확정</text>
+    </g>
+
+    <path d="M 1051 444 C 1051 520 193 520 193 444" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="10 10"/>
+    <text x="640" y="552" text-anchor="middle" font-size="24" font-weight="700" fill="#111827">최종 문서</text>
+    <text x="640" y="590" text-anchor="middle" font-size="20" fill="#4b5563">빠른 초안보다 중요한 것은 근거 있는 검토와 책임 있는 확정입니다.</text>
+  </g>
+</svg>

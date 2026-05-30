@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>오픈소스로 만드는 AI 디지털 글쓰기</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">오픈소스로 만드는 AI 디지털 글쓰기</h1>
+</section>
+
+<section>
+<section id="오픈소스로-만드는-ai-디지털-글쓰기" class="title-slide slide level1">
+<h1>오픈소스로 만드는 AI 디지털 글쓰기</h1>
+<p>조직형 AI 문서 작성 흐름과 DocuMeta, RAG, 오픈소스 도구</p>
+<p>김호성</p>
+</section>
+<section id="문장과-문서-사이의-마법" class="slide level2">
+<h2>문장과 문서 사이의 마법</h2>
+<p>AI가 문서를 대신 쓰는 것이 아니라, 문서가 만들어지는 길을 정리한다.</p>
+<div class="hero-visual">
+<figure>
+<img data-src="assets/product-flow-hero-visual.png" alt="AI 디지털 글쓰기 제품 흐름" /><figcaption aria-hidden="true">AI 디지털 글쓰기 제품 흐름</figcaption>
+</figure>
+</div>
+</section>
+<section id="부-문서의-규칙과-숨은-질서" class="slide level2">
+<h2>1부: 문서의 규칙과 숨은 질서</h2>
+<p>좋은 문장보다 먼저, 업무 문서가 무엇으로 성립하는지 본다.</p>
+<div class="agenda">
+<ul>
+<li>문장만으로 부족한 조직 문서</li>
+<li>업무 문서를 이루는 조건</li>
+<li>문서 속 숨은 <표준 주문서> docu meta</li>
+<li>근거를 불러오는 <패트로누스> RAG</li>
+</ul>
+</div>
+</section>
+<section id="잘-쓴-문장과-아직-부족한-문서" class="slide level2">
+<h2>잘 쓴 문장과 아직 부족한 문서</h2>
+<p>GPT는 이미 문장을 잘 쓴다. 하지만 조직 문서는 문장만으로 끝나지 않는다.</p>
+<figure>
+<img data-src="assets/documeta-rag-hogwarts-train-homage.png" alt="docu meta에서 RAG로 이어지는 마법 기차 여정" /><figcaption aria-hidden="true">docu meta에서 RAG로 이어지는 마법 기차 여정</figcaption>
+</figure>
+<ul>
+<li>누가 읽는가</li>
+<li>어떤 근거를 따르는가</li>
+<li>빠지면 안 되는 항목은 무엇인가</li>
+<li>최종 파일은 어떤 형식인가</li>
+</ul>
+</section>
+<section id="문서를-이루는-네-가지-규칙" class="slide level2">
+<h2>문서를 이루는 네 가지 규칙</h2>
+<p>업무 문서는 문장력이 아니라 조건의 묶음으로 관리된다.</p>
+<figure>
+<img data-src="assets/document-four-elements-hallows-homage.png" alt="문서를 이루는 네 가지 원소" /><figcaption aria-hidden="true">문서를 이루는 네 가지 원소</figcaption>
+</figure>
+<ul>
+<li>대상: 누가 읽고 누가 행동하는가</li>
+<li>형식: 표가 필요한가, 공문 구조가 필요한가</li>
+<li>근거: 어떤 지침과 계획을 따라야 하는가</li>
+<li>출력: 최종 문서는 어디에 제출되는가</li>
+</ul>
+</section>
+<section id="첫상대는-누구로-할-것인가" class="slide level2">
+<h2>첫상대는 누구로 할 것인가?</h2>
+<p>제품화 대상으로는 자주 나오고 조건이 명확한 문서부터 시작한다.</p>
+<ul>
+<li>문서: 내부 업무시스템 점검 안내문</li>
+<li>일정: 2026년 6월 3일 19:00-22:00</li>
+<li>영향 서비스: 전자결재, 문서 열람</li>
+<li>사용자 조치: 문서 저장, 긴급 결재 사전 처리</li>
+<li>문의처: 정보화지원팀</li>
+</ul>
+</section>
+<section id="시연-1-챗지피티에-바로-맡기면" class="slide level2">
+<h2>시연 1: 챗지피티에 바로 맡기면</h2>
+<div class="demo-box">
+<p>결과는 꽤 그럴듯하다.</p>
+<ul>
+<li>표도 만들고 문장도 자연스럽다.</li>
+<li>하지만 그 표가 승인된 양식인지는 모른다.</li>
+<li>값의 출처가 분리되지 않는다.</li>
+<li>실제 담당 부서와 다른 내용이 섞일 수 있다.</li>
+</ul>
+</div>
+</section>
+<section id="문서-속-숨은-docu-meta" class="slide level2">
+<h2>문서 속 숨은 <표준 주문서> docu meta</h2>
+<p>자동화는 문서 원문에서 바로 시작되지 않는다. 먼저 문서 안의 반복 구조를 태깅해야 한다.</p>
+<div class="image-top-layout">
+<figure>
+<img data-src="assets/documeta-workflow-spellbook.png" alt="문서 속 숨은 표준 주문서 DocuMeta" /><figcaption aria-hidden="true">문서 속 숨은 표준 주문서 DocuMeta</figcaption>
+</figure>
+<ul>
+<li>문서: 안내문 전체 본문</li>
+<li>태깅: 제목, 수신, 일정, 영향 서비스, 사용자 조치, 문의처</li>
+<li>docu meta: 필수 슬롯, 표 구조, 근거, 검증 규칙, 출력 형식</li>
+<li>자동화: 입력, 검색, 생성, 검증, 출력 조정</li>
+</ul>
+</div>
+</section>
+<section id="docu-meta는-무엇을-고정하는가" class="slide level2">
+<h2>docu meta는 무엇을 고정하는가</h2>
+<p>docu meta는 문서를 만들기 전에 미리 고정해두는 조건 묶음이다.</p>
+<figure>
+<img data-src="assets/document-condition-card-visual.png" alt="문서 조건 카드 개념 이미지" /><figcaption aria-hidden="true">문서 조건 카드 개념 이미지</figcaption>
+</figure>
+<ul>
+<li>필수 슬롯</li>
+<li>근거</li>
+<li>검증 규칙</li>
+<li>출력 형식</li>
+</ul>
+<p>MD, YAML로 시작해서 DB와 관리자 화면으로 확장할 수 있다.</p>
+</section>
+<section id="시연-2-짧은-docu-meta만-붙여도" class="slide level2">
+<h2>시연 2: 짧은 docu meta만 붙여도</h2>
+<div class="demo-box">
+<p>문서의 기준이 먼저 고정되기 시작한다.</p>
+<ul>
+<li>필수 항목이 먼저 보인다.</li>
+<li>표 구조와 출력 형식이 흔들리지 않는다.</li>
+<li>값의 출처를 나중에 연결할 자리도 분명해진다.</li>
+</ul>
+</div>
+</section>
+<section id="ai-글쓰기의-rag" class="slide level2">
+<h2>AI 글쓰기의 <패트로누스> RAG</h2>
+<p>AI가 마음대로 쓰지 않게 붙잡아주는 수호 장치이다. RAG는 필요한 근거를 세워준다.</p>
+<figure>
+<img data-src="assets/rag-patronus-retriever.png" alt="리트리버는 근거를 가져오는 패트로누스 역할" /><figcaption aria-hidden="true">리트리버는 근거를 가져오는 패트로누스 역할</figcaption>
+</figure>
+<ul>
+<li><code>R</code>etrieval: 작업계획서, 운영지침, 이전 안내문 같은 근거를 찾는다.</li>
+<li><code>A</code>ugmented: 찾은 근거를 초안 작성 맥락에 붙인다.</li>
+<li><code>G</code>eneration: 근거를 바탕으로 초안을 만든다.</li>
+</ul>
+<p>우리가 쓰는 RAG는 가드레일이 설 수 있게 받쳐주는 <code>스캐폴딩</code>이다.</p>
+</section>
+<section id="rag에-대한-흔한-오해" class="slide level2">
+<h2>RAG에 대한 흔한 오해</h2>
+<figure>
+<img data-src="assets/rag-misconceptions-visual.png" alt="RAG에 대한 흔한 오해를 정리하는 이미지" /><figcaption aria-hidden="true">RAG에 대한 흔한 오해를 정리하는 이미지</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>오해</th>
+<th>답</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RAG는 벡터 DB와 같은 말인가?</td>
+<td>아니다. 벡터 DB는 자주 쓰는 저장소일 뿐이고, RAG는 검색된 근거를 생성 흐름에 붙이는 방식이다.</td>
+</tr>
+<tr class="even">
+<td>RAG가 환각을 만든다고 봐야 하는가?</td>
+<td>아니다. 환각을 없애주지는 않지만, 근거를 붙여 환각을 줄이는 데 도움을 준다.</td>
+</tr>
+<tr class="odd">
+<td>RAG만 붙이면 문서 품질이 저절로 좋아지는가?</td>
+<td>아니다. 문서 조건, 근거 품질, 검증 규칙이 함께 있어야 안정된다.</td>
+</tr>
+<tr class="even">
+<td>공문서에도 RAG가 꼭 필요한가?</td>
+<td>모든 문서에 필수는 아니지만, 근거가 바뀌고 확인 책임이 있는 공문서에는 거의 필수에 가깝다.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="부-요약" class="slide level2">
+<h2>1부 요약</h2>
+<div class="summary">
+<ul>
+<li>공문서는 문장만으로 완성되지 않는다.</li>
+<li>문서의 반복 구조를 태깅하면 docu meta가 된다.</li>
+<li>docu meta는 문서 조건과 출력 기준을 먼저 고정한다.</li>
+<li>RAG는 그 기준 위에 필요한 근거를 찾아 붙인다.</li>
+</ul>
+</div>
+</section>
+<section id="부-배운-규칙이-흐름이-되는-시간" class="slide level2">
+<h2>2부: 배운 규칙이 흐름이 되는 시간</h2>
+<p>앞에서 만든 문서 조건이 실제 제품과 오픈소스 흐름으로 어떻게 확장되는지 살펴본다.</p>
+<div class="agenda">
+<ul>
+<li>작업 경로를 남기는 <마법사의 지도></li>
+<li>AI와 사람이 함께 만드는 docu meta</li>
+<li>여러 출력으로 이어지는 문서 조건</li>
+<li>역할로 고르는 오픈소스 도구</li>
+<li>하나의 제품으로 묶이는 구성요소</li>
+</ul>
+</div>
+</section>
+<section id="ai-디지털-글쓰기의" class="slide level2">
+<h2>AI 디지털 글쓰기의 <마법사의 지도></h2>
+<p>완성본만 보는 것이 아니라, 문서가 어떤 조건에서 출발해 어떤 근거와 검증을 거쳤는지 따라갈 수 있어야 한다.</p>
+<figure>
+<img data-src="assets/ai-writing-magic-map.png" alt="AI 디지털 글쓰기의 마법사의 지도" /><figcaption aria-hidden="true">AI 디지털 글쓰기의 마법사의 지도</figcaption>
+</figure>
+<ul>
+<li>조건: 필수 슬롯, 누락값, 작성 대상</li>
+<li>근거: 사용한 문서 제목, 인용 위치, 적용 이유</li>
+<li>DocuMeta: 근거와 연결된 슬롯 값, 표 계약, 출력 대상</li>
+<li>검증: 통과, 수정, 보류 판정과 사유</li>
+<li>출력: 제출 형식, 변환 로그, 최종 파일</li>
+</ul>
+</section>
+<section id="시연-3-documeta-프레임-생성" class="slide level2">
+<h2>시연 3: DocuMeta 프레임 생성</h2>
+<p>이 단계에서는 샘플 문서에서 템플릿 초안을 만들고, 사람이 검토할 DocuMeta 프레임으로 고정하는 과정을 확인한다.</p>
+<div class="demo-box">
+<ul>
+<li>샘플 문서 입력</li>
+<li>LLM 템플릿 초안 생성</li>
+<li>슬롯 후보 확인</li>
+<li>table_contracts 후보 확인</li>
+<li>QMD/TYP/HWPX placeholder 확인</li>
+<li>사람이 검토해 DocuMeta 프레임 확정</li>
+</ul>
+</div>
+<h3 id="강사용-코멘트">강사용 코멘트</h3>
+<p>여기서는 문장 초안보다 DocuMeta 프레임이 더 중요하다. docu meta는 사람이 손본 문서 조건을 LLM과 출력 어댑터가 함께 읽을 수 있게 만든 구조화 입력이고, 시연 3의 핵심은 샘플 문서에서 템플릿 초안을 만들고 사람이 검토할 DocuMeta 프레임을 확정하는 장면이다. RAG는 시연 4에서 근거 문서를 가져와 빈 슬롯을 채우고, 검증 게이트는 이 DocuMeta를 출력으로 넘길지 결정한다.</p>
+</section>
+<section id="docu-meta의-마법-레시피" class="slide level2">
+<h2>docu meta의 마법 레시피</h2>
+<p>AI가 반복 구조를 먼저 찾아내고, 사람이 기준을 확정해 <표준 주문서>로 만든다.</p>
+<div class="image-top-layout">
+<figure>
+<img data-src="assets/documeta-recipe-cauldron.png" alt="AI와 사람이 함께 만드는 DocuMeta 마법 레시피" /><figcaption aria-hidden="true">AI와 사람이 함께 만드는 DocuMeta 마법 레시피</figcaption>
+</figure>
+<ol type="1">
+<li>샘플 문서를 고르고, AI가 구조 초안을 만든다.</li>
+<li>AI가 제목, 수신, 일정, 표, 문의처처럼 반복되는 자리를 찾는다.</li>
+<li>AI가 슬롯 후보를 나누고, 사람이 필수와 선택을 조정한다.</li>
+<li>AI가 관련 근거를 추천하고, 사람이 검증 규칙을 확정한다.</li>
+<li>AI가 출력 조건을 점검하고, 사람이 최종 문서 형식을 승인한다.</li>
+</ol>
+</div>
+</section>
+<section id="시연-4-rag와-글쓰기-빌드" class="slide level2">
+<h2>시연 4: RAG와 글쓰기 빌드</h2>
+<p>이 단계에서는 같은 문서 조건이 출력 형식마다 어떻게 이어지는지 실제 결과 화면으로 확인한다.</p>
+<div class="demo-box">
+<ul>
+<li>DocuMeta 출력 계약 확인</li>
+<li>근거 문서 검색</li>
+<li>DocuMeta 슬롯 완성</li>
+<li>검증 판정</li>
+<li>출력 어댑터 프롬프트 확인</li>
+<li>Quarto 출력 확인</li>
+<li>Typst 조판 결과 확인</li>
+<li>HWPX 제출 문서 연결 확인</li>
+</ul>
+</div>
+<h3 id="강사용-코멘트-1">강사용 코멘트</h3>
+<p>시연 4에서는 템플릿 초안을 다시 만들지 않는다. 시연 4에서 완성된 DocuMeta가 그대로 출력 어댑터로 넘어온 상태를 보여준다. 특히 DocuMeta의 <code>table_contracts</code>가 결재 표, 점검 정보 표, 하단 메타데이터 표로 표현되는 장면을 보여준다. Quarto는 HTML 검토본, Typst는 PDF 조판본, HWPX는 제출 파일 후보라는 역할 구분을 강조한다.</p>
+</section>
+<section id="하나의-주문서-세-가지-출력" class="slide level2">
+<h2>하나의 주문서, 세 가지 출력</h2>
+<p>만들어진 docu meta는 지속적으로 다양한 출력 형식을 이어주는 문서 조건이다.</p>
+<figure>
+<img data-src="assets/final-document-output-workflow.png" alt="검증된 흐름이 최종 문서로 정리되는 장면" /><figcaption aria-hidden="true">검증된 흐름이 최종 문서로 정리되는 장면</figcaption>
+</figure>
+<ul>
+<li>같은 문서 조건이 Quarto, Typst, HWPX로 이어진다.</li>
+<li>완성된 docu meta의 표 계약이 공문서 표로 표현된다.</li>
+<li>Quarto와 Typst는 중간 산출과 조판 흐름을 맡는다.</li>
+<li>마지막에는 배포와 제출에 맞는 HWPX 문서까지 연결된다.</li>
+<li>시연 4의 RAG 검증 판정이 같은 시연 안의 출력 여부를 결정한다.</li>
+</ul>
+</section>
+<section id="도구선택도-역할-구분-하기-나름" class="slide level2">
+<h2>도구선택도 역할 구분 하기 나름</h2>
+<p>오픈소스 이름부터 고르면 제품이 도구에 끌려간다.</p>
+<figure>
+<img data-src="assets/tool-role-separation.png" alt="도구를 선택하기 위한 역할 구분" /><figcaption aria-hidden="true">도구를 선택하기 위한 역할 구분</figcaption>
+</figure>
+<ul>
+<li>조건 관리는 사람이 바꿔도 추적 가능해야 한다.</li>
+<li>검색은 어떤 근거를 썼는지 보여줘야 한다.</li>
+<li>생성은 문서 조건과 근거 안에서 움직여야 한다.</li>
+<li>검증은 결과를 통과, 수정, 보류로 나눠야 한다.</li>
+<li>출력은 제출 가능한 형식까지 이어져야 한다.</li>
+</ul>
+</section>
+<section id="역할별-오픈소스-후보" class="slide level2">
+<h2>역할별 오픈소스 후보</h2>
+<p>나눈 역할마다 선택할 수 있는 도구가 달라진다.</p>
+<div class="full-table">
+<table>
+<thead>
+<tr class="header">
+<th>역할</th>
+<th>후보</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>조건 관리</td>
+<td>YAML, JSON Schema, Baserow, NocoDB</td>
+</tr>
+<tr class="even">
+<td>RAG 연결</td>
+<td>FAISS, LangChain, LangGraph, pgvector</td>
+</tr>
+<tr class="odd">
+<td>임베딩/검색</td>
+<td>Hugging Face, sentence-transformers, Qdrant, Chroma</td>
+</tr>
+<tr class="even">
+<td>저장소</td>
+<td>PostgreSQL, LanceDB, OpenSearch</td>
+</tr>
+<tr class="odd">
+<td>모델 실행</td>
+<td>Ollama, vLLM, llama.cpp, Hugging Face, OpenAI 호환 API</td>
+</tr>
+<tr class="even">
+<td>제품 API</td>
+<td>FastAPI, PostgreSQL</td>
+</tr>
+<tr class="odd">
+<td>출력</td>
+<td>Quarto, Typst, Pandoc, HWPX 어댑터</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="오픈소스로-만드는-ai-디지털-글쓰기-시스템" class="slide level2">
+<h2>오픈소스로 만드는 AI 디지털 글쓰기 시스템</h2>
+<p>결국 제품은 한 도구가 아니라 연결된 컴포넌트의 조합이다.</p>
+<figure>
+<img data-src="assets/product-components-visual.png" alt="제품 구성요소 개념 이미지" /><figcaption aria-hidden="true">제품 구성요소 개념 이미지</figcaption>
+</figure>
+<ul>
+<li>작성 화면: 사용자가 문서 유형과 값을 넣는 곳</li>
+<li>docu meta: 문서 조건과 슬롯 구조를 잡는 곳</li>
+<li>RAG: 근거와 선례를 찾는 곳</li>
+<li>LLM: 초안과 표현 후보를 만드는 곳</li>
+<li>검증 게이트: 통과, 수정, 보류를 나누는 곳</li>
+<li>출력 어댑터: Quarto, Typst, HWPX로 내보내는 곳</li>
+</ul>
+</section>
+<section id="마지막에-남는-것은-통과한-문서" class="slide level2">
+<h2>마지막에 남는 것은 통과한 문서</h2>
+<div class="summary">
+<ul>
+<li>출발점은 문장이 아니라 문서 조건이다.</li>
+<li>자동화는 문서에서 태깅을 거쳐 docu meta로 간다.</li>
+<li>RAG와 검증은 품질을 통제하는 장치다.</li>
+<li>최종 문서는 조건, 근거, 검증을 통과한 결과다.</li>
+<li>제품화는 문서 하나를 끝까지 통과시키는 데서 시작한다.</li>
+</ul>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@5.1.0/dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="https://unpkg.com/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@5.1.0/plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@5.1.0/plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+      
+        // Push each slide change to the browser history
+        history: true,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

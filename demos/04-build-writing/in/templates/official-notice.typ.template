@@ -1,0 +1,16 @@
+#set page(
+  width: 210mm,
+  height: 297mm,
+  margin: (left: 23mm, right: 20mm, top: 16mm, bottom: 14mm),
+)
+#set text(font: "Noto Sans CJK KR", size: 10pt)
+#set par(leading: 1.55em, justify: true)
+
+#let black-line = (paint: rgb("111111"), thickness: 1pt)
+#let thin-line = (paint: rgb("5c5c5c"), thickness: 0.35pt)
+#let hair-line = (paint: rgb("b8b8b8"), thickness: 0.25pt)
+#let label-fill = rgb("f3f3f3")
+#let label-cell(body) = table.cell(fill: label-fill)[#align(center + horizon)[#text(weight: "bold")[#body]]]
+#let body-cell(body) = table.cell[#align(left + horizon)[#body]]
+
+{{ typ_blocks }}
