@@ -136,3 +136,15 @@ uv run python demos/04-build-writing/output-package.py
 - 시연 4 결과 = `demos/04-build-writing/out/final-documeta.yaml`; 채워진 값·근거 매핑·검증 상태 확인.
 - 최종 출력 = `demos/04-build-writing/out/final-package/`; 원고·HTML·PDF·HWPX와 출력 요약 대조.
 - 사람의 후속 작업 = 원문·조건·값·실제 출력 검토 → 누락·오류 수정 → 재실행·재대조 → 업무 기준에 따른 승인·공유.
+
+## 강연 주제 태그
+
+- AI 디지털 글쓰기 · 생성형 AI 강의 · 조직 문서 자동화 · DocuMeta · RAG · 오픈소스 · Quarto · Typst · HWPX.
+
+## 강연 문의
+
+- 강연·워크숍이 필요한 경우 [GitHub 문의](https://github.com/joygram/ai-digital-writing/issues/new)로 주제·대상·희망 일정을 남겨 주세요.
+
+---
+
+- 이 저장소의 강연과 강의 자료는 AI와 함께 만들었습니다.
