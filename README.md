@@ -143,7 +143,7 @@ uv run python demos/04-build-writing/output-package.py
 
 ## 강연 문의
 
-- 강연·워크숍이 필요한 경우 [GitHub 문의](https://github.com/joygram/ai-digital-writing/issues/new)로 주제·대상·희망 일정을 남겨 주세요.
+- 강연·워크숍이 필요한 경우 [joygram@gmail.com](mailto:joygram@gmail.com)으로 주제·대상·희망 일정을 보내 주세요.
 
 ---
 
