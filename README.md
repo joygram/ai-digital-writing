@@ -1,148 +1,138 @@
 # 오픈소스로 만드는 AI 디지털 글쓰기
 
-이 저장소는 **AI 디지털 글쓰기 강의의 공개 자료**를 담고 있다.
+<p align="center">
+  <img src="assets/product-flow-hero-visual.png" alt="문서 조건과 근거를 연결하고 생성·검증을 거쳐 최종 문서로 이어지는 흐름" width="800">
+</p>
 
-강의의 목적은 AI가 문장을 대신 쓰는 수준을 넘어, 조직 문서가 만들어지는 조건과 근거, 검증, 출력 과정을 공개된 도구와 재현 가능한 예제로 설명하는 것이다. 발표 자료와 데모 코드는 DocuMeta, RAG, Quarto, Typst, HWPX 출력 흐름을 하나의 문서 작성 파이프라인으로 보여준다.
+- AI 디지털 글쓰기 강의의 공개 원고·예제·실행 코드.
+- 중심 질문 = **AI가 만든 문장을 어떤 조건·근거·검증을 거쳐 조직에서 사용할 문서로 완성할 것인가?**
+- 바로 보기 = [공개 프레젠테이션](https://joygram.github.io/ai-digital-writing/) · [발표 원고](docs/presentation.md) · [데모 안내](demos/README.md).
 
-## 공개 프레젠테이션
+## AI 디지털 글쓰기란 무엇인가
 
-- GitHub Pages: <https://joygram.github.io/ai-digital-writing/>
-- 발표 원고: [docs/presentation.md](docs/presentation.md)
+- 이 강의의 정의 = 사람이 문서의 목적·독자·필수 조건을 정하고, AI와 디지털 도구로 근거 수집·초안 생성·검증·출력을 연결하는 문서 작성 과정.
+- 글쓴이의 판단 = 무엇을 전달하고 누구의 행동을 이끌지, 어떤 자료를 믿고 어떤 조건에서 문서를 내보낼지 결정.
+- AI의 역할 = 샘플의 반복 구조 발견, 슬롯·표현 후보 생성, 검색 근거를 이용한 값 채우기 보조.
+- 디지털의 의미 = 문서 조건·원자료·출처·검증 결과·출력 파일을 연결하고, 변경 시 다시 확인·생성할 수 있는 작업 구조.
 
-이 프레젠테이션은 다음 내용을 공개한다.
+### 문서가 성립하는 네 가지 조건
 
-1. 업무 문서가 문장만으로 완성되지 않는 이유
-2. 문서를 이루는 대상, 형식, 근거, 출력 조건
-3. DocuMeta로 문서의 필수 슬롯과 검증 규칙을 분리하는 방법
-4. RAG로 근거 문서를 연결하고 감사 가능한 슬롯 출처를 남기는 방법
-5. Quarto, Typst, HWPX로 최종 산출물을 만드는 공개 도구 기반 흐름
+- 대상 = 읽는 사람과 문서를 읽고 행동할 사람.
+- 형식 = 필수 항목, 표의 구조, 조직에서 요구하는 양식.
+- 근거 = 값과 문장을 뒷받침하는 계획서·지침·업무 자료.
+- 출력 = 검토·배포·제출에 사용할 형식과 최종 파일의 요구 조건.
 
-## 저장소 구성
+## 어떤 통찰을 가져야 하는가
 
-## 지금 봐야 할 파일
+### 문장 품질과 업무 적합성을 함께 판단
 
-1. [docs/timetable.md](docs/timetable.md)  
-   2시간 전체 시간표
+- 자연스러운 문장에도 누락 항목·잘못된 담당 부서·근거 없는 일정이 섞일 수 있음.
+- 검토 질문 = 필수 정보가 갖춰졌는가, 승인된 구조인가, 각 값의 출처를 설명할 수 있는가?
+- 자동화의 출발점 = 반복되는 문서 유형 하나를 고르고, 반드시 지켜야 할 조건을 먼저 명시.
 
-2. [docs/presentation.md](docs/presentation.md)  
-   발표 본문 원고
+### 문서 조건을 구조화하면 생성과 검증의 기준이 생김
 
-3. [docs/instructor-script.md](docs/instructor-script.md)  
-   강의자가 실제로 읽거나 참고할 진행 스크립트
+<p align="center">
+  <img src="assets/document-condition-card-visual.png" alt="필수 슬롯·표 구조·근거·검증·출력을 하나의 문서 조건 카드로 연결한 개념도" width="640">
+</p>
 
-4. [demos/README.md](demos/README.md)  
-   시연별 폴더와 실행 순서
+- DocuMeta = 이 강의에서 사용하는 문서 조건 묶음; 필수 슬롯·표 계약·근거 정책·검증 규칙·출력 계약을 구조화한 입력.
+- 슬롯 = 제목·일정·영향 범위·사용자 조치·문의처처럼 값을 채울 자리; 표 계약 = 그 값을 담을 표의 구조.
+- AI가 제안한 구조 = 사람이 검토할 초안; 필수·선택 항목과 적용 규칙은 사람이 확정.
+- 조건과 값을 분리하면 같은 구조를 재사용하고, 빠진 값과 근거 부족을 명시적으로 확인 가능.
 
-## 시연에서 직접 쓰는 파일
+### 검색된 근거와 검증된 사실을 구분
 
-### 시연 1: 챗지피티에 바로 맡기면
+- RAG = 필요한 자료를 검색해 생성 맥락에 붙이는 방식; 검색 저장소·생성 모델·검증 단계는 각각 별도 역할.
+- 검색의 질문 = 현재 문서와 관련 있는 자료인가, 필요한 근거를 찾았는가, 무관하거나 오래된 자료가 섞였는가?
+- 추적의 질문 = 어느 문서의 어떤 조각으로 슬롯을 채웠는가; 데모의 `slot_source_map`에서 연결 확인.
+- 한계 = 검색 결과와 출처 연결만으로 사실의 정확성·최신성·업무 적합성 보장 불가; 원문과 적용 범위 검토 필요.
 
-- [demos/01-chatgpt-direct/lecture-notes.md](demos/01-chatgpt-direct/lecture-notes.md)  
-  ChatGPT에 조건 없이 요청하는 복붙용 입력
-- [demos/01-chatgpt-direct/instructor-notes.md](demos/01-chatgpt-direct/instructor-notes.md)  
-  실습 1 강의자 메모
+### 생성 이후의 판정과 출력까지 설계
 
-### 시연 2: 짧은 docu meta만 붙여도
+- 검증 = 필수값·구조·근거 연결 등 정의한 조건 검사; 통과·수정·보류 사유 기록.
+- 출력 게이트 = 검증 상태를 확인하고 보류 문서의 출력 중단; 데모의 출력 허용 판정과 사람의 업무 승인 구분.
+- 출력 후 확인 = 형식이 달라져도 값·표·필수 항목이 유지되는지 실제 파일에서 대조.
+- 도구 선택 = 조건 관리·검색·생성·검증·출력의 역할을 먼저 나누고, 각 역할에 필요한 도구 선택.
 
-- [demos/02-short-documeta/lecture-notes.md](demos/02-short-documeta/lecture-notes.md)  
-  DocuMeta 예시를 붙이는 복붙용 입력
-- [demos/02-short-documeta/instructor-notes.md](demos/02-short-documeta/instructor-notes.md)  
-  실습 2 강의자 메모
-- [demos/02-short-documeta/documeta-practice-template.yaml](demos/02-short-documeta/documeta-practice-template.yaml)  
-  짧은 DocuMeta 예시
+## 본 강의에서 얻어갈 점
 
-### 시연 3: DocuMeta 프레임 생성
+- 문서 분석 = 반복 업무 문서에서 대상·형식·근거·출력 조건 추출.
+- 조건 설계 = 필수 슬롯·표 구조·검증 규칙을 DocuMeta로 표현하고 사람의 확정 지점 구분.
+- 근거 추적 = 검색된 문서 조각과 생성된 슬롯 값의 관계 확인.
+- 품질 통제 = 결과를 통과·수정·보류로 판정하고 출력 허용 조건 정의.
+- 재현 가능한 흐름 = 입력·프롬프트·근거·검증 기록·최종 파일을 따라가며 수정할 단계 식별.
 
-- [demos/03-documeta-completion/notes.md](demos/03-documeta-completion/notes.md)  
-  템플릿 초안 생성, DocuMeta 프레임, RAG reference chunk 생성 노트
-- [demos/03-documeta-completion/generate-template-draft.py](demos/03-documeta-completion/generate-template-draft.py)  
-  샘플 공문을 LLM에 넣어 템플릿 초안을 생성하는 시연 스크립트
-- `demos/03-documeta-completion/out/`  
-  실행 후 생성되는 템플릿 초안과 RAG reference chunk
+## 슬라이드에서 보여주고자 하는 점
 
-### 시연 4: RAG와 글쓰기 빌드
+- [문장과 문서 사이의 차이](docs/presentation.md) = 자연스러운 초안이 업무 문서의 필수 조건을 충족하는지 질문.
+- 표준 주문서 비유 = 샘플 문서의 반복 구조를 태깅하고 DocuMeta로 고정하는 과정 시각화.
+- 근거를 가져오는 비유 = RAG의 검색·맥락 보강·생성을 구분하고, 검색 이후에도 남는 검증 책임 확인.
+- 작업 경로를 보여주는 지도 = 완성본에서 조건·근거·슬롯·검증·출력 경로를 거슬러 확인하는 관점 제시.
+- 제품 구성 = 작성 화면·DocuMeta·RAG·LLM·검증 게이트·출력 어댑터의 역할과 연결 관계 설명.
 
-- [demos/04-build-writing/notes.md](demos/04-build-writing/notes.md)  
-  시연 3에서 생성한 RAG reference chunk 기반 슬롯 완성과 출력 패키징 입력/출력
-- [demos/04-build-writing/rag-slot-flow.py](demos/04-build-writing/rag-slot-flow.py)  
-  FAISS + Blackbox LLM + 검증으로 `final-documeta.yaml`을 만드는 시연 스크립트
-- [demos/04-build-writing/output-package.py](demos/04-build-writing/output-package.py)  
-  완성형 DocuMeta를 Quarto / Typst / HWPX로 내보내는 시연 스크립트
+## 네 가지 데모에서 관찰할 점
 
-## 실행 후 생성되는 파일
+### 1 · 조건 없이 바로 작성 요청
 
-시연 결과는 각 시연 폴더의 `out/` 아래에 생긴다.
+- 입력 = [직접 요청문](demos/01-chatgpt-direct/lecture-notes.md).
+- 관찰 = 표와 문장은 자연스러워도 필수 항목·승인된 양식·값의 출처가 명시되는지 확인.
+- 가져갈 질문 = 이 초안을 우리 조직 문서로 쓰려면 어떤 조건과 확인이 더 필요한가?
+
+### 2 · 짧은 DocuMeta 추가
+
+- 입력 = [조건을 더한 요청문](demos/02-short-documeta/lecture-notes.md) · [DocuMeta 예제](demos/02-short-documeta/documeta-practice-template.yaml).
+- 관찰 = 같은 요청에 문서 유형·필수 슬롯·표 구조·검증 규칙을 더했을 때 검토 기준이 어떻게 명확해지는지 비교.
+- 가져갈 질문 = 고정할 조건과 매번 바뀌는 값은 무엇이며, 아직 근거가 없는 값은 무엇인가?
+
+### 3 · 샘플에서 DocuMeta 프레임 생성
+
+- 입력 = [샘플 공문](demos/03-documeta-completion/in/sample-official-notice.md) · [진행 안내](demos/03-documeta-completion/notes.md).
+- 관찰 = LLM의 템플릿 초안에서 슬롯·표·출력 계약 후보를 살펴보고 사람이 확정할 기준 구분.
+- 구현 범위 = 참조 문서 조각은 사람이 정한 분리 규칙을 스크립트가 적용해 생성; API 실패 시 대체 초안 사용 가능.
+- 가져갈 질문 = AI 제안 중 무엇을 수정·확정했으며, 어떤 원문을 다음 단계의 근거로 남겼는가?
+
+### 4 · RAG로 슬롯을 채우고 출력
+
+- 입력 = [DocuMeta 프레임](demos/04-build-writing/in/documeta.yaml) · [실행·검증 안내](demos/04-build-writing/notes.md).
+- 관찰 = 관련 근거 검색 → 슬롯 채우기 → 출처 매핑 → 검증 → 출력 허용 판정.
+- 검색 반례 = 작업계획·영향 범위·이전 안내문을 선택하고 무관한 메일 개편 자료를 제외하는지 확인.
+- 가져갈 질문 = 일정·영향 범위·조치·문의처를 각각 어느 근거에서 가져왔고, 검증 실패 시 출력이 멈추는가?
+
+### 같은 조건에서 여러 출력으로
+
+<p align="center">
+  <img src="assets/final-document-output-workflow.png" alt="조건과 근거의 검증을 거친 문서를 여러 출력 형식으로 연결하는 개념도" width="720">
+</p>
+
+- Quarto = QMD 원고와 HTML 검토본; Typst = TYP 원고와 PDF 조판본; HWPX = 제출 문서 후보.
+- 관찰 = 동일한 DocuMeta의 값·표 계약이 각 출력에서 유지되는지 비교; 실제 제출 적합성은 별도 확인.
+- 데모 범위 = 예제 문서와 준비된 규칙으로 흐름 재현; 조직 전체의 문서·권한·승인 체계를 구현한 완성 제품과 구분.
+
+## 자료를 보는 방법
+
+- 온라인 = [공개 프레젠테이션](https://joygram.github.io/ai-digital-writing/).
+- 내용 이해 = [발표 원고](docs/presentation.md) → [데모 안내](demos/README.md) → 각 시연 입력·결과 비교.
+- 진행 참고 = [강사용 스크립트](docs/instructor-script.md); 슬라이드 수정 = [Quarto 소스](slides/ai-writing-slides.qmd).
+- 폴더 역할 = `assets/` 이미지, `docs/` 발표·진행 자료, `demos/` 입력·코드·결과, `scripts/` 환경 준비.
 
 ## 데모 실행 준비
 
-시연 3-4는 Python 패키지 외에 `uv`, `quarto`, `typst` CLI가 필요하다.
+- 실행 환경 = Python 3.11–3.12, `uv`, `quarto`, `typst`; 시연 3·4는 API 설정 필요.
+- Linux 준비 = `./scripts/setup-demo-linux.sh`; Windows 준비 = `./scripts/setup-demo-windows.ps1`.
+- 수동 준비 = `uv sync` → `demos/.env.example`을 `demos/.env`로 복사 → API 키·모델 설정; 설정은 `demos/.env`에서 로드.
+- HWPX = `HWPX_GENERATOR_PATH`에 로컬 생성기 지정; 생성기가 없으면 흐름 확인용 대체 패키지 사용, 제출용 결과와 구분.
+- 상세 설치·환경·열람 방법 = [데모 실행 안내](demos/README.md).
 
-Linux(Ubuntu/Debian 계열):
-
-```bash
-./scripts/setup-demo-linux.sh
-```
-
-Windows PowerShell:
-
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\scripts\setup-demo-windows.ps1
-```
-
-설치 스크립트가 하는 일:
-
-1. `uv` 설치 또는 확인
-2. `quarto` 설치 또는 확인
-3. `typst` 설치 또는 확인
-4. `uv sync`로 Python 3.11-3.12 가상환경과 데모 의존성 준비
-5. `demos/.env`가 없으면 `demos/.env.example`에서 생성
-6. `uv`, `python`, `quarto`, `typst` 버전 출력
-
-설치 후 `demos/.env`의 `API_KEY`를 실제 Blackbox 호환 API 키로 바꾼다.
-
-수동으로 준비할 때는 아래 순서를 따른다.
+### 실행과 결과 확인
 
 ```bash
-uv sync
-cp demos/.env.example demos/.env
-uv run python --version
-quarto --version
-typst --version
+uv run python demos/03-documeta-completion/generate-template-draft.py
+uv run python demos/04-build-writing/rag-slot-flow.py
+uv run python demos/04-build-writing/output-package.py
 ```
 
-HWPX 결과 확인은 `assets/vsix/deukhwp.vsix`를 설치한 DeukHwp 편집기에서 한다.
-HWPX 파일 생성 보조 어댑터는 `demos/04-build-writing/support/hwpx_adapter.py`에 숨겨 두었다.
-
-API 환경변수는 `demos/.env` 한 곳에서만 읽는다.
-
-- `demos/04-build-writing/out/final-documeta.yaml`: 시연 4의 RAG 슬롯 완성 결과
-- `demos/04-build-writing/out/final-package/*.qmd`: Quarto 원고
-- `demos/04-build-writing/out/final-package/*.typ`: Typst 원고
-- `demos/04-build-writing/out/final-package/*.html`: Quarto 렌더링 결과
-- `demos/04-build-writing/out/final-package/*.pdf`: Typst 렌더링 결과
-- `demos/04-build-writing/out/final-package/*.hwpx`: HWPX 결과
-
-## 헷갈리기 쉬운 파일
-
-- `slides/ai-writing-slides.qmd`  
-  슬라이드 소스다. 강의 흐름을 바꿀 때가 아니면 먼저 볼 파일은 아니다.
-
-- `ai-writing-slides.html`, `ai-writing-presentation.pdf`, `ai-writing-slides.tex`  
-  렌더링 산출물이다. 원본 문서가 아니라 결과물이며 git에는 올리지 않는다.
-
-- PPTX 산출물  
-  현재 강의 운영본은 PDF 기준이다. PPTX는 생성하거나 관리하지 않는다.
-
-## 권장 열람 순서
-
-강의 준비할 때는 이 순서가 가장 덜 헷갈린다.
-
-1. `docs/timetable.md`
-2. `docs/instructor-script.md`
-3. `demos/README.md`
-4. `demos/01-chatgpt-direct/lecture-notes.md`
-5. `demos/02-short-documeta/lecture-notes.md`
-6. `demos/03-documeta-completion/notes.md`
-7. `demos/04-build-writing/notes.md`
-8. 필요할 때만 `docs/presentation.md`
+- 시연 3 결과 = `demos/03-documeta-completion/out/`; 템플릿 초안·입력 프롬프트·참조 문서 조각 확인.
+- 시연 4 결과 = `demos/04-build-writing/out/final-documeta.yaml`; 채워진 값·근거 매핑·검증 상태 확인.
+- 최종 출력 = `demos/04-build-writing/out/final-package/`; 원고·HTML·PDF·HWPX와 출력 요약 대조.
+- 사람의 후속 작업 = 원문·조건·값·실제 출력 검토 → 누락·오류 수정 → 재실행·재대조 → 업무 기준에 따른 승인·공유.
