@@ -141,11 +141,8 @@ uv run python demos/04-build-writing/output-package.py
 
 - AI 디지털 글쓰기 · 생성형 AI 강의 · 조직 문서 자동화 · DocuMeta · RAG · 오픈소스 · Quarto · Typst · HWPX.
 
-## 강연 문의
+## 강연 문의 및 제작 과정
 
-- 강연·워크숍이 필요한 경우 [joygram@gmail.com](mailto:joygram@gmail.com)으로 주제·대상·희망 일정을 보내 주세요.
-
----
-
-- 역할 분담 = 강연자: 주제·목표·구성 결정과 내용·표현 수정 지시 / AI: 초안·자료 정리, 코드·차트·시각 자료 구현과 자동 점검 보조.
-- 이 저장소의 강연과 강의 자료는 AI와 함께 만들었습니다.
+- 강연·워크숍 문의: [joygram@gmail.com](mailto:joygram@gmail.com) · 주제·대상·희망 일정 전달.
+- 역할: 강연자 — 기획·구성·수정 지시 / AI — 초안·자료 정리·코드·시각 자료 구현·자동 점검 보조.
+- 모든 강연과 강의 자료는 AI와 함께 제작.
